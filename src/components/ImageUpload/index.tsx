@@ -25,7 +25,7 @@ export function ImageUpload() {
   }
 
   const previewClasses = [
-    'border-2'
+    'selected'
   ]
 
   return (

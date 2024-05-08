@@ -36,9 +36,15 @@
 }
 
 .image-preview {
-  height: 100%;
+  max-height: 100%;
   object-fit: contain;
   aspect-ratio: auto;
+  transition: box-shadow 0.3s;
+}
+
+.image-preview.selected {
+  box-shadow: 0 0 0 3px #646cff;
+  outline: 3px solid transparent;
 }
 
 
