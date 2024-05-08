@@ -65,23 +65,31 @@ export function ShotButton() {
   const buttonBackgroundColors = useRef<string[]>([])
   buttonBackgroundColors.current = getRandomColors()
 
-  const buttonStyles = {
-    background: `linear-gradient(90deg, ${buttonBackgroundColors.current[0]}, ${buttonBackgroundColors.current[1]}, ${buttonBackgroundColors.current[2]})`,
+  const buttonContainerStyles = {
+    // background: `linear-gradient(90deg, ${buttonBackgroundColors.current[0]}, ${buttonBackgroundColors.current[1]}, ${buttonBackgroundColors.current[2]})`,
+    background: `rgb(245 245 245)`,
     padding: '1em',
     border: 'none',
     borderRadius: '0.5em',
     color: 'white',
     fontSize: '1em',
     fontWeight: 'bold',
-    cursor: 'pointer',
+    // cursor: 'pointer',
     width: 'fit-content'
+  }
+
+  const buttonStyles = {
+    // background: 'transparent',
+    opacity: 0.8,
+    backgroundFilter: 'blur(5px)',
+    boxShadow: '0 0 5px 2px rgba(0, 0, 0, 0.3)',
   }
 
   return (
     <>
-      <div style={{ ...buttonStyles }}>
+      <div style={{ ...buttonContainerStyles }}>
       {/* <div style={{ backgroundImage: `linear-gradient(90deg, ${buttonBackgroundColors.current[0], buttonBackgroundColors.current[1]})`, padding: '1em' }}> */}
-        <button>my button</button>
+        <button style={{ ...buttonStyles }}>my button</button>
       </div>
     </>
   )
