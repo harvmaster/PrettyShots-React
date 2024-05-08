@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -11,6 +15,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --spacing-xs: 0.3em;
+  --spacing-sm: 0.6em;
+  --spacing-md: 1.2em;
+  --spacing-lg: 2.4em;
+  --spacing-xl: 4.8em;
 }
 
 a {
@@ -65,4 +75,22 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+
+.padding-xs {
+  padding: var(--spacing-xs);
+}
+.padding-sm {
+  padding: var(--spacing-sm);
+}
+.padding-md {
+  padding: var(--spacing-md);
+}
+.padding-lg {
+  padding: var(--spacing-lg);
+}
+.padding-xl {
+  padding: var(--spacing-xl);
 }

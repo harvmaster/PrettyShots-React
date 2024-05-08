@@ -8,7 +8,13 @@ export function App() {
 
   return (
     <>
+    <div class="text-3xl">
+      app
+    </div>
+
+    <div style="">
       <ImageUpload />
+    </div>
 
       <ShotButton />
       {/* <div>

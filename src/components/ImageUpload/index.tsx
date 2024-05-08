@@ -2,78 +2,53 @@ import { useState } from 'preact/hooks'
 import './ImageUpload.css'
 
 export function ImageUpload() {
-  const [file, setFile] = useState<File | undefined>()
+  const [selected, setSelected] = useState<File | undefined>()
+  const [files, setFiles] = useState<File[] | undefined>()
 
   const handleFileChange = (e: Event) => {
     if (!e.target) return
     if (!(e.target instanceof HTMLInputElement)) return
     if (!e.target.files) return
 
-    setFile(e.target.files[0])
+    const files: File[] = []
+    const fileList = e.target.files
+    for (let i = 0; i < fileList.length; i++) {
+      const file = fileList.item(i)
+      if (!file) break;
+      files.push(file)
+    }
+
+    console.log(files)
+
+    setFiles(files)
+    setSelected(files[0])
   }
 
-
-  const getWidth = (f: File) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        if (!e.target) return
-        if (!(e.target instanceof FileReader)) return
-        const img = new Image()
-        img.onload = () => {
-          resolve(img.width)
-        }
-        img.src = e.target.result as string
-      }
-      reader.readAsDataURL(f)
-    })
-  }
-
-  const getImageWidth = async () => {
-    if (!file) return
-    const width = await getWidth(file)
-    console.log(width)
-  }
-
-  const getImageDimenstions = (f: File): Promise<{ width: number, height: number }> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        if (!e.target) return
-        if (!(e.target instanceof FileReader)) return
-        const img = new Image()
-        img.onload = () => {
-          resolve({
-            width: img.width,
-            height: img.height
-          })
-        }
-        img.src = e.target.result as string
-      }
-      reader.readAsDataURL(f)
-    })
-  }
-
-  const calculateContainerWidth = async (ratio: number) => {
-    if (!file) return
-    const { width, height } = await getImageDimenstions(file)
-    console.log(width, height)
-    const containerWidth = width * ratio
-    console.log(containerWidth)
-
-  }
-
+  const previewClasses = [
+    'border-2'
+  ]
 
   return (
     <>
-      <div class="file-upload-container">
-        <input class="file-upload-input" type="file" onChange={handleFileChange} />
-        <span class="file-upload-label">Upload an image</span>
+      <div class="grid padding-sm md:grid-cols-3 grid-cols-1 justify-center">
+        <div />
+        <div class="file-upload-container grid order-2">
+          <input class="file-upload-input" type="file" multiple onChange={handleFileChange} />
+          <span class="file-upload-label">Upload an image</span>
+        </div>
       </div>
 
-      <div class="image-preview-container">
-        {file && <img class="image-preview" src={URL.createObjectURL(file)} onLoad={() =>  calculateContainerWidth(1) }/>}
-      </div>
+      {files && 
+        <div className="grid md:grid-cols-3 grid-cols-1 padding-sm gap-4 image-preview-container rounded-xl border-2 border-slate-300">
+          {files.map((file: File) => (
+            <img
+              className={['image-preview', 'rounded-xl', selected == file ? previewClasses : ''].join(' ')}
+              src={URL.createObjectURL(file)}
+              onClick={() => setSelected(file)}
+            />
+          ))}
+        </div>
+      }
     </>
   )
 }
