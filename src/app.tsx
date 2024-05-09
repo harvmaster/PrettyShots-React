@@ -8,8 +8,8 @@ export function App() {
 
   return (
     <>
-    <div class="text-3xl">
-      app
+    <div class="text-5xl">
+      PrettyShots
     </div>
 
     <div style="">
