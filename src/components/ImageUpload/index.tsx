@@ -39,7 +39,7 @@ export function ImageUpload() {
           </div>
         </div>
 
-        <div className={['w-fit grid justify-center'].join(' ')}>
+        <div className={['w-full grid justify-center'].join(' ')}>
 
         {files && 
           <div className="grid md:grid-cols-3 grid-cols-1 w-fit p-4 gap-4 rounded-xl border-2 border-slate-300 bg-teal-100">
