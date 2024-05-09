@@ -8,12 +8,14 @@ export function App() {
 
   return (
     <>
-      <div className="size-full">
-        <div class="text-5xl">
-          PrettyShots
+      <div className="size-full grid grid-cols-1 justify-center items-start">
+        <div class="grid justify-center">
+          <div class="w-fit text-6xl font-black p-2 rainbow-text">
+            PrettyShots
+          </div>
         </div>
 
-        <div className="size-full">
+        <div className="w-full">
           <ImageUpload />
         </div>
 

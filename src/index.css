@@ -15,12 +15,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  --spacing-xs: 0.3em;
-  --spacing-sm: 0.6em;
-  --spacing-md: 1.2em;
-  --spacing-lg: 2.4em;
-  --spacing-xl: 4.8em;
 }
 
 a {
@@ -77,20 +71,13 @@ button:focus-visible {
   }
 }
 
-
-
-.padding-xs {
-  padding: var(--spacing-xs);
-}
-.padding-sm {
-  padding: var(--spacing-sm);
-}
-.padding-md {
-  padding: var(--spacing-md);
-}
-.padding-lg {
-  padding: var(--spacing-lg);
-}
-.padding-xl {
-  padding: var(--spacing-xl);
+.rainbow-text {
+  background-image: linear-gradient(
+    to right,
+    hsl(167, 100%, 75%),
+    hsl(235, 100%, 75%)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }

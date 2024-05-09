@@ -30,25 +30,30 @@ export function ImageUpload() {
 
   return (
     <>
-      <div class="grid padding-sm md:grid-cols-3 grid-cols-1 justify-center">
-        <div />
-        <div class="file-upload-container size-max order-2">
-          <input class="file-upload-input" type="file" multiple onChange={handleFileChange} />
-          <span class="file-upload-label">Upload an image</span>
+      <div className={['grid', 'grid-cols-1', 'gap-4', 'justify-center', 'items-start'].join(' ')}>
+        <div class="grid md:grid-cols-3 grid-cols-1 justify-center">
+          <div />
+          <div class="file-upload-container order-2">
+            <input class="file-upload-input" type="file" multiple onChange={handleFileChange} />
+            <span class="file-upload-label">Upload an image</span>
+          </div>
         </div>
-      </div>
 
-      {files && 
-        <div className="grid md:grid-cols-3 grid-cols-1 padding-sm gap-4 image-preview-container rounded-xl border-2 border-slate-300">
-          {files.map((file: File) => (
-            <img
+        <div className={['w-fit grid justify-center'].join(' ')}>
+
+        {files && 
+          <div className="grid md:grid-cols-3 grid-cols-1 w-fit p-4 gap-4 rounded-xl border-2 border-slate-300 bg-teal-100">
+            {files.map((file: File) => (
+              <img
               className={['image-preview', 'rounded-xl', selected == file ? previewClasses : ''].join(' ')}
               src={URL.createObjectURL(file)}
               onClick={() => setSelected(file)}
-            />
-          ))}
+              />
+            ))}
+          </div>
+        }
         </div>
-      }
+      </div>
     </>
   )
 }
