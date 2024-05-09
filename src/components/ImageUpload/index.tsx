@@ -32,7 +32,7 @@ export function ImageUpload() {
     <>
       <div class="grid padding-sm md:grid-cols-3 grid-cols-1 justify-center">
         <div />
-        <div class="file-upload-container grid order-2">
+        <div class="file-upload-container size-max order-2">
           <input class="file-upload-input" type="file" multiple onChange={handleFileChange} />
           <span class="file-upload-label">Upload an image</span>
         </div>

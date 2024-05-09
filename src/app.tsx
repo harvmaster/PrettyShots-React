@@ -8,15 +8,17 @@ export function App() {
 
   return (
     <>
-    <div class="text-5xl">
-      PrettyShots
-    </div>
+      <div className="size-full">
+        <div class="text-5xl">
+          PrettyShots
+        </div>
 
-    <div style="">
-      <ImageUpload />
-    </div>
+        <div className="size-full">
+          <ImageUpload />
+        </div>
 
-      <ShotButton />
+        <ShotButton />
+      </div>
       {/* <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} class="logo" alt="Vite logo" />
