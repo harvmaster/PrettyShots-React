@@ -44,11 +44,11 @@ export function ImageUpload() {
       <div className={['grid', 'grid-cols-1', 'gap-4', 'justify-center', 'items-start'].join(' ')}>
 
         {!files &&
-          <div class="grid md:grid-cols-3 grid-cols-1 justify-center">
+          <div className="grid md:grid-cols-3 grid-cols-1 justify-center">
             <div />
-            <div class="file-upload-container order-2">
-              <input class="file-upload-input" type="file" multiple onChange={handleFileChange} />
-              <span class="file-upload-label">Upload an image</span>
+            <div className="file-upload-container order-2">
+              <input className="file-upload-input" type="file" multiple onInput={handleFileChange} />
+              <span className="file-upload-label">Upload an image</span>
             </div>
           </div>
         }
@@ -59,16 +59,16 @@ export function ImageUpload() {
             <div className="grid md:grid-cols-3 grid-cols-1 w-fit p-4 gap-4 rounded-xl border-2 border-slate-300 bg-teal-100">
               {files.map((file: ImageFile) => (
                 <img
-                className={['image-preview', 'rounded-xl', selected == file.url ? previewClasses : ''].join(' ')}
-                src={file.url}
-                onClick={() => setSelected(file.url)}
+                  className={['image-preview', 'rounded-xl', selected === file.url ? previewClasses.join(' ') : ''].join(' ')}
+                  src={file.url}
+                  onClick={() => setSelected(file.url)}
                 />
               ))}
               <div className={['image-preview', 'add-file-container', 'grid', 'grid-cols-1'].join(' ')}>
-                <input class="file-upload-input" type="file" multiple onChange={handleFileChange} />
-                <div class="grid grid-cols-1 text-2xl">
-                  <span class="file-upload-label basis-full">+</span>
-                  <span class="file-upload-label basis-full">Add Image</span>
+                <input className="file-upload-input" type="file" multiple onChange={handleFileChange} />
+                <div className="grid grid-cols-1 text-2xl">
+                  <span className="file-upload-label basis-full">+</span>
+                  <span className="file-upload-label basis-full">Add Image</span>
                 </div>
               </div> 
             </div>
@@ -78,3 +78,4 @@ export function ImageUpload() {
     </>
   )
 }
+
