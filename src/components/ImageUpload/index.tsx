@@ -1,27 +1,36 @@
 import { useState } from 'preact/hooks'
 import './ImageUpload.css'
 
+type ImageFile = {
+  file: File;
+  url: string;
+}
+
 export function ImageUpload() {
-  const [selected, setSelected] = useState<File | undefined>()
-  const [files, setFiles] = useState<File[] | undefined>()
+  const [selected, setSelected] = useState<string | undefined>()
+  const [files, setFiles] = useState<ImageFile[] | undefined>()
 
   const handleFileChange = (e: Event) => {
     if (!e.target) return
     if (!(e.target instanceof HTMLInputElement)) return
     if (!e.target.files) return
 
-    const files: File[] = []
+    const files: ImageFile[] = []
     const fileList = e.target.files
     for (let i = 0; i < fileList.length; i++) {
       const file = fileList.item(i)
       if (!file) break;
-      files.push(file)
+      const formatted: ImageFile = {
+        file: file,
+        url: URL.createObjectURL(file)
+      } 
+      files.push(formatted)
     }
 
     console.log(files)
 
     setFiles(files)
-    setSelected(files[0])
+    setSelected(files[0].url)
   }
 
   const previewClasses = [
@@ -43,11 +52,11 @@ export function ImageUpload() {
 
         {files && 
           <div className="grid md:grid-cols-3 grid-cols-1 w-fit p-4 gap-4 rounded-xl border-2 border-slate-300 bg-teal-100">
-            {files.map((file: File) => (
+            {files.map((file: ImageFile) => (
               <img
-              className={['image-preview', 'rounded-xl', selected == file ? previewClasses : ''].join(' ')}
-              src={URL.createObjectURL(file)}
-              onClick={() => setSelected(file)}
+              className={['image-preview', 'rounded-xl', selected == file.url ? previewClasses : ''].join(' ')}
+              src={file.url}
+              onClick={() => setSelected(file.url)}
               />
             ))}
           </div>
