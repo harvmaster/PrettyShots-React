@@ -1,5 +1,6 @@
 import { useState } from 'preact/hooks'
 import './ImageUpload.css'
+import { TargetedEvent } from 'preact/compat';
 
 type ImageFile = {
   file: File;
@@ -10,7 +11,7 @@ export function ImageUpload() {
   const [selected, setSelected] = useState<string | undefined>()
   const [files, setFiles] = useState<ImageFile[] | undefined>()
 
-  const handleFileChange = (e: Event) => {
+  const handleFileChange = (e: TargetedEvent<HTMLInputElement>) => {
     if (!e.target) return
     if (!(e.target instanceof HTMLInputElement)) return
     if (!e.target.files) return
