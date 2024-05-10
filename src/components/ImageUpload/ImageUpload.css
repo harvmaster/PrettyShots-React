@@ -49,6 +49,21 @@
   outline: 3px solid transparent;
 }
 
+.add-file-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #bebebe;
+  font-weight: bold;
+  transition: all 0.3s;
+
+}
+
 
 /* .file-upload-button {
   width: 100%;

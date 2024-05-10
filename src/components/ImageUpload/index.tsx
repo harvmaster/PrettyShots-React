@@ -17,9 +17,11 @@ export function ImageUpload() {
 
     const files: ImageFile[] = []
     const fileList = e.target.files
+
     for (let i = 0; i < fileList.length; i++) {
       const file = fileList.item(i)
       if (!file) break;
+      if (file.type.indexOf('image') === -1) continue;
       const formatted: ImageFile = {
         file: file,
         url: URL.createObjectURL(file)
@@ -27,7 +29,7 @@ export function ImageUpload() {
       files.push(formatted)
     }
 
-    console.log(files)
+    if (files.length === 0) return // No valid files - TODO show error
 
     setFiles(files)
     setSelected(files[0].url)
@@ -59,8 +61,15 @@ export function ImageUpload() {
               onClick={() => setSelected(file.url)}
               />
             ))}
+            <div className={['image-preview', 'add-file-container', 'grid', 'grid-cols-1'].join(' ')}>
+              <input class="file-upload-input" type="file" multiple onChange={handleFileChange} />
+              <div class="grid grid-cols-1 text-2xl">
+                <span class="file-upload-label basis-full">+</span>
+                <span class="file-upload-label basis-full">Add Image</span>
+              </div>
+            </div> 
           </div>
-        }
+          }
         </div>
       </div>
     </>
